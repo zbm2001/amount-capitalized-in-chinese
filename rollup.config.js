@@ -11,7 +11,10 @@ const banner = '/*\n' +
     .map((k) => ` * @${k}: ${pkg[k]}`).join('\n') +
   '\n */'
 const external = Object.keys(pkg.dependencies || {}).concat(Object.keys(pkg.devDependencies))
-const name = pkg.name.replace(/-([a-z])/g, (m, $1) => $1.toUpperCase())
+// 清除 npm 私有模块前缀
+const filename = pkg.name.replace(/^@\S+\//, '')
+// 变量名做驼峰标记法转换
+const name = filename.replace(/-([a-z])/g, (m, $1) => $1.toUpperCase())
 
 module.exports = {
   input: 'src/index.js',
@@ -52,22 +55,22 @@ module.exports = {
     }, {
       banner,
       name,
-      file: name + '.amd.js',
+      file: filename + '.amd.js',
       format: 'amd'
     }, {
       banner,
       name,
-      file: name + '.es.js',
+      file: filename + '.es.js',
       format: 'es'
     }, {
       banner,
       name,
-      file: name + '.iife.js',
+      file: filename + '.iife.js',
       format: 'iife'
     }, {
       banner,
       name,
-      file: name + '.umd.js',
+      file: filename + '.umd.js',
       format: 'umd'
     }
   ]
