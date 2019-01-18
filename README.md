@@ -20,22 +20,22 @@ amountCapitalizedInChinese(123) => "壹佰贰拾叁元整"
 
 generate flow format files:
 
-cjs => index.js  
-amd => module-name.amd.js  
-es => module-name.es.js  
-iife => module-name.iife.js  
-umd => module-name.umd.js  
+index.js  // cjs  
+module-name.amd.js  // amd  
+module-name.es.js  // es  
+module-name.iife.js  // iife  
+module-name.umd.js  // umd  
 
 #### $ node rollup umd amd
 
 generate flow format files:
 
-amd => module-name.amd.js  
-umd => module-name.umd.js  
+module-name.amd.js  // amd  
+module-name.umd.js  // umd  
 
 #### node rollup umd minimize
 
 generate flow format files:
 
-umd => module-name.umd.js  
-umd => module-name.umd.min.js  
+module-name.umd.js  // umd  
+module-name.umd.min.js  // umd minimize   
