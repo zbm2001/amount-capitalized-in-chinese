@@ -12,7 +12,7 @@ acic(123) => "壹佰贰拾叁元整"
 
 ### browser
 <script src="amount-capitalized-in-chinese.umd.js"></script>  
-
+  
 amountCapitalizedInChinese(123) => "壹佰贰拾叁元整"
 
 ### How to build
