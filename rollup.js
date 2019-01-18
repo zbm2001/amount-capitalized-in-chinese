@@ -21,18 +21,19 @@ if (argv.length) {
 
 /**
  * JS压缩最小化
- * @param  {String} code JS代码源文本
+ * https://github.com/mishoo/UglifyJS2
+ * @param  {String|Object} code JS代码源文本
  * @return {String} 返回压缩后的代码文本
  */
 function minify(code) {
-  let minifyOptions = {
-    fromString: true
-  }
+  let minifyOptions = {}
   let result = uglifyjs.minify(code, minifyOptions)
+  // console.log('result', result)
   return result.code
 }
 
 rollup.rollup(rc).then(bundle => {
+  const minimize = argv.indexOf('minimize') > -1
 
   output.forEach(target => {
     bundle.generate(target).then(result => {
@@ -41,10 +42,10 @@ rollup.rollup(rc).then(bundle => {
         fs.writeFileSync(fileName, code)
 
         // 若指定压缩最小化文件
-        if (target.minimize) {
-          let minMain = fileName.replace(/(?=\.js$)/, '.min')
-          minMain === fileName && (minMain += '.min')
-          fs.writeFileSync(minMain, target.banner + minify(result.code))
+        if (minimize || target.minimize) {
+          let minFileName = fileName.replace(/(?=\.js$)/, '.min')
+          if (minFileName === fileName) minFileName += '.min'
+          fs.writeFileSync(minFileName, target.banner + minify(code))
         }
       })
     })

@@ -9,11 +9,11 @@ const pkg = require('./package.json')
 const banner = '/*\n' +
   'name,version,description,author,license'.split(',')
     .map((k) => ` * @${k}: ${pkg[k]}`).join('\n') +
-  '\n */'
+  '\n */\n'
 const external = Object.keys(pkg.dependencies || {}).concat(Object.keys(pkg.devDependencies))
-// 清除 npm 私有模块前缀
+// 清除 npm 私有模块前缀，如：@scope/module-name => module-name
 const filename = pkg.name.replace(/^@\S+\//, '')
-// 变量名做驼峰标记法转换
+// 变量名做驼峰标记法转换，如：module-name => moduleName
 const name = filename.replace(/-([a-z])/g, (m, $1) => $1.toUpperCase())
 
 module.exports = {
