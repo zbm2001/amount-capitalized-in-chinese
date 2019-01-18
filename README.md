@@ -4,7 +4,7 @@
 ## Quick start
 
 ### node
-$ npm install --save amount-capitalized-in-chinese
+#### $ npm install --save amount-capitalized-in-chinese
 
 const acic = require('amount-capitalized-in-chinese')
 
@@ -33,7 +33,7 @@ generate flow format files:
 module-name.amd.js  // amd  
 module-name.umd.js  // umd  
 
-#### node rollup umd minimize
+#### $ node rollup umd minimize
 
 generate flow format files:
 
