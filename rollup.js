@@ -11,13 +11,21 @@ const rc = {
 
 let output = rollupConfig.output ? Array.isArray(rollupConfig.output) ? rollupConfig.output : [rollupConfig.output] : []
 
-// 只输出有指定的引用模式，未指定输出全部引用模式
+// 只输出命令参数指定的引用模式，若未指定则输出全部引用模式
 let argv = process.argv.slice(2)
 if (argv.length) {
-  let filterOutput = output.filter(o => argv.indexOf(o.format) > -1)
-  if (filterOutput.length) output = filterOutput
+  let clearOutput = []
+  let filterOutput = output.filter(o => {
+    if (argv.indexOf(o.format) > -1) return true
+    clearOutput.push(o)
+  })
+  if (filterOutput.length) {
+    output = filterOutput
+    clearOutput.forEach(o => {
+      fs.unlinkSync(o.file)
+    })
+  }
 }
-
 
 /**
  * JS压缩最小化
