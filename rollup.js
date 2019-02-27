@@ -1,4 +1,5 @@
-// 项目下直接命令$ node rollup.js
+// 项目下直接命令$ node rollup.js [cjs[ umd[ amd[ iife[ es]]]]]
+// 可输出命令参数指定的一个或多个引用模式，若未指定命令参数则生成全部引用模式，
 
 const fs = require('fs')
 const rollup = require('rollup')
@@ -11,7 +12,7 @@ const rc = {
 
 let output = rollupConfig.output ? Array.isArray(rollupConfig.output) ? rollupConfig.output : [rollupConfig.output] : []
 
-// 只输出命令参数指定的引用模式，若未指定则输出全部引用模式
+// 只输出命令参数指定的一个或多个引用模式，若未指定则输出全部引用模式
 let argv = process.argv.slice(2)
 if (argv.length) {
   let clearOutput = []
