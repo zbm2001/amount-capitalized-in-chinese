@@ -1,6 +1,6 @@
 {
   "name": "amount-capitalized-in-chinese",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "index.js",
   "description": "金额数字大写中文转换",
   "scripts": {

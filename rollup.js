@@ -23,7 +23,7 @@ if (argv.length) {
   if (filterOutput.length) {
     output = filterOutput
     clearOutput.forEach(o => {
-      fs.unlinkSync(o.file)
+      if(fs.existsSync(o.file)) fs.unlinkSync(o.file)
     })
   }
 }
