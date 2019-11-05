@@ -1,5 +1,5 @@
 // 项目下直接命令$ node rollup.js [cjs[ umd[ amd[ iife[ es]]]]]
-// 可输出命令参数指定的一个或多个引用模式，若未指定命令参数则生成全部引用模式，
+// 可输出命令参数指定的一个或多个引用模式，若未指定命令参数则生成全部引用模式。
 
 const fs = require('fs')
 const rollup = require('rollup')
@@ -42,7 +42,7 @@ function minify(code) {
 }
 
 rollup.rollup(rc).then(bundle => {
-  const minimize = argv.indexOf('minimize') > -1
+  const minimize = argv.indexOf('min') > -1
 
   output.forEach(target => {
     bundle.generate(target).then(result => {
